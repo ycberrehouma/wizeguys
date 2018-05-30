@@ -1,0 +1,51 @@
+{% extends 'database.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('message') }}" title="Home page">Home</a></li>
+        <li class="active">Task list</li>
+    </ol>
+
+    <table class="table table-striped" id="ReservationTable">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Email Address</th>
+            <th>Phone number</th>
+            <th>Guest Number</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <h2 class="page-header">Task List</h2>
+
+
+            {% for entity in entities %}
+                <tr>
+
+                    <td>{{ entity.login.id}}</td>
+                    <td>{{ entity.login.firstName}}</td>
+                    <td>{{ entity.login.lastName}}</td>
+                    <td>{{ entity.login.emailAddress}}</td>
+                    <td>{{ entity.login.password}}</td>
+                    <td>{{ entity.login.phoneNumber}}</td>
+                    <td>{{ entity.login.date|date('F j, Y, g:i a')}}</td>
+                    <td>{{ entity.id }}</td>
+                    <td>{{ entity.address }}</td>
+                    <td>{{ entity.city }}</td>
+                    <td>{{ entity.state }}</td>
+                    <td>{{ entity.zip }}</td>
+                    <td>{{ entity.instruction }}</td>
+                    <td>{{ entity.date|date('F j, Y, g:i a')}}</td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

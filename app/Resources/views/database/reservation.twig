@@ -1,0 +1,45 @@
+{% extends 'database.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('message') }}" title="Home page">Home</a></li>
+        <li class="active">Task list</li>
+    </ol>
+
+    <table class="table table-striped" id="ReservationTable">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Email Address</th>
+            <th>Phone number</th>
+            <th>Guest Number</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <h2 class="page-header">Task List</h2>
+
+        {% if reservations is defined %}
+            {% for reservation in reservations %}
+                <tr>
+                    <th scope="row">{{ reservation.id }}</th>
+                    <td>{{ reservation.fullName }}</td>
+                    <td>{{ reservation.emailAddress }}</td>
+                    <td>{{ reservation.phoneNumber }}</td>
+                    <td>{{ reservation.guestNumber }}</td>
+                    <td>{{ reservation.time|date('g:i a') }}</td>
+                    <td>{{ reservation.date|date('F j, Y')  }}</td>-
+                </tr
+            {% endfor %}
+        {% else %}
+            No
+        {% endif %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

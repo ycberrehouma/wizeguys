@@ -1,0 +1,137 @@
+{% extends 'database.twig' %}
+
+{% block body %}
+
+    <table class="display" id="ReservationTable">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Email Address</th>
+            <th>Phone number</th>
+            <th>Guest Number</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <h2 class="page-header">Reservations</h2>
+
+
+            {% for reservation in reservations %}
+                <tr>
+                    <th scope="row">{{ reservation.id }}</th>
+                    <td>{{ reservation.fullName }}</td>
+                    <td>{{ reservation.emailAddress }}</td>
+                    <td>{{ reservation.phoneNumber }}</td>
+                    <td>{{ reservation.guestNumber }}</td>
+                    <td>{{ reservation.time|date('g:i a') }}</td>
+                    <td>{{ reservation.date|date('F j, Y')  }}</td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+
+     <table class="display" id="MessageTable">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Full Name</th>
+            <th>Email Address</th>
+            <th>Message</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <h2 class="page-header">Messages</h2>
+
+
+            {% for message in messages %}
+                <tr>
+                    <th scope="row">{{ message.id }}</th>
+                    <td>{{ message.fullName }}</td>
+                    <td>{{ message.emailAddress }}</td>
+                    <td>{{ message.message }}</td>
+                    <td>{{ message.date|date('F j, Y, g:i a')  }}</td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+     <table class="display" id="UserTable" style="width: 25%">
+        <thead>
+        <tr>
+
+            <th>Id</th>
+            <th>First </th>
+            <th>Last </th>
+            <th>Email </th>
+            <!--<th>Password</th>-->
+            <th>Phone #</th>
+            <!--<th>Created On</th>-->
+           <!-- <th>Address #</th>-->
+            <th>Street</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Instruction</th>
+           <!-- <th>Address Date Created</th>-->
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <h2 class="page-header">User Information</h2>
+
+
+ {% for entity in entities %}
+        <tr>
+
+        <td>{{ entity.login.id}}</td>
+        <td>{{ entity.login.firstName}}</td>
+        <td>{{ entity.login.lastName}}</td>
+        <td>{{ entity.login.emailAddress}}</td>
+       <!-- <td>{{ entity.login.password}}</td>-->
+        <td>{{ entity.login.phoneNumber}}</td>
+       <!-- <td>{{ entity.login.date|date('F j, Y, g:i a')}}</td>-->
+         <!--   <td>{{ entity.id }}</td>-->
+            <td>{{ entity.address }}</td>
+            <td>{{ entity.city }}</td>
+            <td>{{ entity.state }}</td>
+            <td>{{ entity.zip }}</td>
+            <td>{{ entity.instruction }}</td>
+            <!--<td>{{ entity.date|date('F j, Y, g:i a')}}</td>-->
+        </tr>
+    {% endfor %}
+
+        </tbody>
+    </table>
+
+    {% block javascripts %}
+        <script>
+            $(document).ready(function(){ $('#ReservationTable').DataTable();
+            });
+            $(document).ready(function(){ $('#MessageTable').DataTable();
+            });
+            $(document).ready(function(){  var table = $('#UserTable').DataTable( {
+                "scrollY": "1000px",
+                "paging": false
+            });
+                $('a.toggle-vis').on( 'click', function (e) {
+                    e.preventDefault();
+
+                    // Get the column API object
+                    var column = table.column( $(this).attr('data-column') );
+
+                    // Toggle the visibility
+                    column.visible( ! column.visible() );
+                } );
+            } );
+        </script>
+        {% endblock %}
+{% endblock %}
