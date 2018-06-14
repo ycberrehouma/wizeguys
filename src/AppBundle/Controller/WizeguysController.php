@@ -10,6 +10,7 @@ use AppBundle\Entity\Login;
 use AppBundle\Entity\Reservation;
 use AppBundle\Entity\Address;
 use AppBundle\Entity\Code;
+use Symfony\Component\HttpFoundation\Response;
 
 class WizeguysController extends Controller
 {
@@ -78,9 +79,12 @@ class WizeguysController extends Controller
 
         }
 
+        $message = $this->getDoctrine()
+            ->getRepository('AppBundle:Message')
+            ->findAll();
 
 
-        return $this->render('main/one-page.twig');
+        return $this->render('main/one-page.twig', array('messages' => $message,));
 
     }
 
@@ -195,9 +199,11 @@ class WizeguysController extends Controller
                     $first = implode("|", $first[0]);
                     $this->get('session')->set('loginUserId', $first);
 
+
+                    
                     return $this->redirectToRoute('index', array('first' => $first[0] ));
 
-                } else if ($password !== $test) {
+                } else if (sha1($password) !== $test) {
                   /*  $this->addFlash(
                         'notice',
                         'password not match'
@@ -501,11 +507,11 @@ class WizeguysController extends Controller
                 ->checkEmail($email_address);
 
             $get_current_password = implode("|", $get_current_password[0]);
-            if (($new_password == $confirm_password) && ($get_current_password == $current_password)) {
+            if (($new_password == $confirm_password) && ($get_current_password == sha1($current_password))) {
 
                 $em = $this->getDoctrine()->getManager();
                 $login_database = $em->getRepository('AppBundle:Login')->findOneBy(['emailAddress' => $email_address]);
-                $login_database->setPassword($new_password);
+                $login_database->setPassword(sha1($new_password));
                 $em->flush();
 
                 $message = \Swift_Message::newInstance()
@@ -518,6 +524,7 @@ class WizeguysController extends Controller
                 return $this->redirectToRoute('login-register');
             }
         }
+
 
         return $this->render('main/reset-password.twig');
     }
@@ -543,7 +550,7 @@ class WizeguysController extends Controller
 
                 $em = $this->getDoctrine()->getManager();
                 $login_database = $em->getRepository('AppBundle:Login')->findOneBy(['emailAddress' => $email_address]);
-                $login_database->setPassword($new_password);
+                $login_database->setPassword(sha1($new_password));
                 $em->flush();
 
                 $message = \Swift_Message::newInstance()
@@ -597,6 +604,19 @@ class WizeguysController extends Controller
 
             return $this->render('main/get-code.twig');
         }
+
+    /**
+     * @Route("/log-out", name="log-out")
+     */
+    public function logoutAction(Request $request)
+    {
+
+        session_destroy();
+        return $this->redirectToRoute('index');
+
+    }
+
+
 
 }
 
