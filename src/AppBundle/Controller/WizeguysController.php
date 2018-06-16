@@ -421,7 +421,139 @@ class WizeguysController extends Controller
      */
     public function cliftonAction(Request $request)
     {
-        return $this->render('main/clifton.twig');
+        $Message = new Message;
+        if (($request->getMethod() == Request::METHOD_POST) & (isset($_POST['submit_message']))) {
+            $full_name = $request->request->get('full_name');
+            $email_address = $request->request->get('email_address');
+            $message = $request->request->get('message');
+            $now = new\DateTime('now');
+
+            $Message->setFullName($full_name);
+            $Message->setEmailAddress($email_address);
+            $Message->setMessage($message);
+            $Message->setDate($now);
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($Message);
+            $em->flush();
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('New Reservation')
+                ->setFrom(array('yassine.b@byteacademy.co' => 'WizeGuys Support'))
+                ->setTo('metallicarow@gmail.com')
+                ->setBody('You have a new message from customer '.$full_name. '! you can check the database for more details but his message is:'.`"<br>"` .$message, 'text/html');
+            $this->get('mailer')->send($message);
+
+        }
+
+        $Reservation = new Reservation;
+        if (($request->getMethod() == Request::METHOD_POST) & (isset($_POST['submit_reservation']))) {
+            $full_name = $request->request->get('full_name');
+            $email_address = $request->request->get('email_address');
+            $phone_number = $request->request->get('phone_number');
+            $guest_number = $request->request->get('guest_number');
+            $date = $request->request->get('date');
+            $time = $request->request->get('time');
+
+            $Reservation->setFullName($full_name);
+            $Reservation->setEmailAddress($email_address);
+            $Reservation->setPhoneNumber($phone_number);
+            $Reservation->setDate($date);
+            $Reservation->setTime($time);
+            $Reservation->setGuestNumber($guest_number);
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($Reservation);
+            $em->flush();
+
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('New Reservation')
+                ->setFrom(array('yassine.b@byteacademy.co' => 'WizeGuys Support'))
+                ->setTo('metallicarow@gmail.com')
+                ->setBody('You have a reservation! check the database list to find out who', 'text/html');
+            $this->get('mailer')->send($message);
+
+        }
+
+        $message = $this->getDoctrine()
+            ->getRepository('AppBundle:Message')
+            ->findAll();
+
+
+        return $this->render('main/clifton.twig', array('messages' => $message,));
+    }
+
+    /**
+     * @Route("/hackensack", name="hackensack")
+     */
+    public function hackensackAction(Request $request)
+    {
+        $Message = new Message;
+        if (($request->getMethod() == Request::METHOD_POST) & (isset($_POST['submit_message']))) {
+            $full_name = $request->request->get('full_name');
+            $email_address = $request->request->get('email_address');
+            $message = $request->request->get('message');
+            $now = new\DateTime('now');
+
+            $Message->setFullName($full_name);
+            $Message->setEmailAddress($email_address);
+            $Message->setMessage($message);
+            $Message->setDate($now);
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($Message);
+            $em->flush();
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('New Reservation')
+                ->setFrom(array('yassine.b@byteacademy.co' => 'WizeGuys Support'))
+                ->setTo('metallicarow@gmail.com')
+                ->setBody('You have a new message from customer '.$full_name. '! you can check the database for more details but his message is:'.`"<br>"` .$message, 'text/html');
+            $this->get('mailer')->send($message);
+
+        }
+
+        $Reservation = new Reservation;
+        if (($request->getMethod() == Request::METHOD_POST) & (isset($_POST['submit_reservation']))) {
+            $full_name = $request->request->get('full_name');
+            $email_address = $request->request->get('email_address');
+            $phone_number = $request->request->get('phone_number');
+            $guest_number = $request->request->get('guest_number');
+            $date = $request->request->get('date');
+            $time = $request->request->get('time');
+
+            $Reservation->setFullName($full_name);
+            $Reservation->setEmailAddress($email_address);
+            $Reservation->setPhoneNumber($phone_number);
+            $Reservation->setDate($date);
+            $Reservation->setTime($time);
+            $Reservation->setGuestNumber($guest_number);
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($Reservation);
+            $em->flush();
+
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('New Reservation')
+                ->setFrom(array('yassine.b@byteacademy.co' => 'WizeGuys Support'))
+                ->setTo('metallicarow@gmail.com')
+                ->setBody('You have a reservation! check the database list to find out who', 'text/html');
+            $this->get('mailer')->send($message);
+
+        }
+
+        $message = $this->getDoctrine()
+            ->getRepository('AppBundle:Message')
+            ->findAll();
+
+
+        return $this->render('main/hackensack.twig', array('messages' => $message,));
     }
 
     /**
@@ -606,13 +738,23 @@ class WizeguysController extends Controller
         }
 
     /**
-     * @Route("/log-out", name="log-out")
+     * @Route("/logout", name="logout")
      */
     public function logoutAction(Request $request)
     {
 
         session_destroy();
         return $this->redirectToRoute('index');
+
+    }
+
+    /**
+     * @Route("/demo", name="demo")
+     */
+    public function demoAction(Request $request)
+    {
+
+        return $this->render('main/demo.twig');
 
     }
 
