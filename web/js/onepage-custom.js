@@ -81,7 +81,8 @@ $(function () {
     });
 
 //menu filter
-                if ($('.menu-filter-items').length) {
+
+    if ($('.menu-filter-items').length) {
                     var $galleryFilter = $('.menu-filter-items').isotope({
                         itemSelector: '.menu-item',
                         masonry: {

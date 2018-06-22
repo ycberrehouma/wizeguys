@@ -7,7 +7,7 @@
                     <li data-transition="random"> 
                         <!-- MAIN IMAGE -->
 
-                        <img src="http://4.bp.blogspot.com/_Q7pjfCi6QYc/TNc7_NCJ38I/AAAAAAAAFZI/2qtfbOtqGiY/s1600/IMG_2368.JPG" alt="" width="1920" height="1000" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg">
+                        <img src="http://4.bp.blogspot.com/_Q7pjfCi6QYc/TNc7_NCJ38I/AAAAAAAAFZI/2qtfbOtqGiY/s1600/IMG_2368.JPG" alt="" width="1920" height="1000" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" onload="myFunction()">
                         <!-- LAYER NR. 1 -->
                         <div class="tp-caption tp-resizeme slider-title" 
                              data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" 
@@ -193,7 +193,7 @@
 
        <section id="menu">
            <div class="space-70"></div>
-           <div class="container">
+           <div class="container" id="menu-div">
                <div class="text-center">
                    <h1 class="title-1">Our <span class="text-color ">Menu</span></h1>
                    <h5 class="subtitle">Lorem ipsum dolor</h5>
@@ -205,10 +205,10 @@
                <li data-filter=".breakfast">Breakfast</li>
                <li data-filter=".lunch">Lunch</li>
                <li data-filter=".dinner">Dinner</li>-->
-               <li class="is-checked" data-filter=".appetizers">Appetizers</li>
+               <li id="first-menu" class="is-checked" data-filter=".appetizers" >Appetizers</li>
                <li data-filter=".rolls">Rolls</li>
                <li data-filter=".calzones">Calzones</li>
-               <li data-filter=".salad">Salad</li>
+               <li  data-filter=".salad">Salad</li>
                <li data-filter=".soup">Soup</li>
                <li data-filter=".stromboli">Stromboli</li>
                <li data-filter=".pizza">Speciality Pizza</li>
@@ -236,7 +236,7 @@
                <!--appetizers-->
                <div class=" appetizers col-md-4 margin-b-30 menu-item">
                    <a href="#" class="menu-grid">
-                       <img src="http://www.recipe4living.com/assets/itemimages/400/400/3/default_24bf9346d44b856e7ea055a02accd97d_copycat%20arbys%20curly%20fries%20dreamstime_s_39229405.jpg" alt="" class="img-fluid">
+                       <img src="http://www.recipe4living.com/assets/itemimages/400/400/3/default_24bf9346d44b856e7ea055a02accd97d_copycat%20arbys%20curly%20fries%20dreamstime_s_39229405.jpg" alt="" class="img-fluid" onload="myFunction()">
                        <div class="menu-grid-desc">
                            <span class="price float-right">$3.49</span>
                            <h4>Curly Fries</h4>
@@ -2403,7 +2403,7 @@
        <!--end menu-->
 
 
-       <div class="cta-background parallax-background" >
+      <!-- <div class="cta-background parallax-background" >
            <div class="container">
                <div class="row">
                    <div class="col-md-8 ml-auto text-left">
@@ -2415,56 +2415,19 @@
                </div>
            </div>
        </div><!--end call to action-->
-
-        <!--testimonials-->
-        <div class="testimonials">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 ml-auto mr-auto text-center">
-                        <div class="text-center">
-                            <h1 class="title-1">Customer <span class="text-color ">Reviews</span></h1>  
-                            <h5 class="subtitle">What they say</h5>
-                            <div class="space-30"></div>
-                        </div>
-                        <div class="testi-slider">
-                            <ul class="slides">
-                                {% for message in messages %}
-                                <li>
-                                    <p>
-                                        {{  message.message }}
-                                    </p>
-                                    <div class="testi-info">
-                                        <!--<img src="{{ asset('images/avtar-1.jpg') }}" alt="" width="50" class="rounded-circle">-->
-                                        <h4>{{ message.fullName }} </h4>
-
-                                       <!-- <i class="ion-star"></i>
-                                        <i class="ion-star"></i>
-                                        <i class="ion-star"></i>
-                                        <i class="ion-star"></i>
-                                        <i class="ion-ios-star-half"></i>-->
-                                    </div>
-                                </li><!--slide item-->
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+    <!--reservation-->
+    <section id="reservation">
+        <div class="space-70"></div>
+        <div class="container">
+            <div class="text-center">
+                <h1 class="title-1">Book a <span class="text-color ">Table</span></h1>
+                <h5 class="subtitle">Lorem ipsum dolor</h5>
+                <div class="space-30"></div>
             </div>
-        </div><!--testimonials end-->
 
-        <!--reservation-->
-       <section id="reservation">
-            <div class="space-70"></div>
-            <div class="container">
-                <div class="text-center">
-                    <h1 class="title-1">Book a <span class="text-color ">Table</span></h1>
-                    <h5 class="subtitle">Lorem ipsum dolor</h5>
-                    <div class="space-30"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-8 ml-auto mr-auto">
-                       <form  method="post" class="reservation-form"  action="{{ path('index') }}" name="reservation">
+            <div class="row">
+                <div class="col-lg-8 ml-auto mr-auto">
+                    <form  method="post" class="reservation-form"  action="{{ path('index') }}" name="reservation">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="input-group date">
@@ -2519,15 +2482,53 @@
                                 </div>
                             </div>
                         </div>
-                           <button type="submit" name="submit_reservation" class="btn btn-xl btn-dark btn-block">Book Now</button>
+                        <button type="submit" name="submit_reservation" class="btn btn-xl btn-dark btn-block">Book Now</button>
                         <div id="r_result"></div>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="space-70"></div>
+    </section>
+    <!--end reservation-->
+    
+        <!--testimonials-->
+        <div class="testimonials">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto text-center">
+                        <div class="text-center">
+                            <h1 class="title-1">Customer <span class="text-color ">Reviews</span></h1>  
+                            <h5 class="subtitle">What they say</h5>
+                            <div class="space-30"></div>
+                        </div>
+                        <div class="testi-slider">
+                            <ul class="slides">
+                                {% for message in messages %}
+                                <li>
+                                    <p>
+                                        {{  message.message }}
+                                    </p>
+                                    <div class="testi-info">
+                                        <!--<img src="{{ asset('images/avtar-1.jpg') }}" alt="" width="50" class="rounded-circle">-->
+                                        <h4>{{ message.fullName }} </h4>
+
+                                       <!-- <i class="ion-star"></i>
+                                        <i class="ion-star"></i>
+                                        <i class="ion-star"></i>
+                                        <i class="ion-star"></i>
+                                        <i class="ion-ios-star-half"></i>-->
+                                    </div>
+                                </li><!--slide item-->
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="space-70"></div>
-        </section>
-        <!--end reservation-->
+        </div><!--testimonials end-->
+
+
 
 
 
@@ -2637,9 +2638,12 @@
 
 {% block javascripts %}
         <script type="text/javascript">
+
+            function myFunction() {
+                document.getElementById("first-menu").click();
+            }
+
             //revolution slider
-
-
     jQuery("#slider1").revolution({
         sliderType: "standard",
         jsFileLocation: "/assets/plugins/revolution/",

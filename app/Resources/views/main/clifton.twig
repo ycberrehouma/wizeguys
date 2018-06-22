@@ -237,7 +237,7 @@
                    <div class="space-30"></div>
                </div>
                <ul class="menu-filter-list list-inline margin-b-40 text-center">
-                   <li class="is-checked" data-filter=".appetizers">Appetizers</li>
+                   <li id="first-menu" class="is-checked" data-filter=".appetizers">Appetizers</li>
                    <li data-filter=".rolls">Rolls</li>
                    <li data-filter=".calzones">Calzones</li>
                    <li data-filter=".salad">Salad</li>
@@ -2714,8 +2714,83 @@
        <!-- </section>
        <!--end menu-->
 
+    <!--reservation-->
+    <section id="reservation">
+        <div class="space-70"></div>
+        <div class="container">
+            <div class="text-center">
+                <h1 class="title-1">Book a <span class="text-color ">Table</span></h1>
+                <h5 class="subtitle">Lorem ipsum dolor</h5>
+                <div class="space-30"></div>
+            </div>
 
-       <div class="cta-background parallax-background" >
+            <div class="row">
+                <div class="col-lg-8 ml-auto mr-auto">
+                    <form  method="post" class="reservation-form"  action="{{ path('index') }}" name="reservation">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control datepicker" name="date" placeholder="Date">
+                                    <div class="input-group-addon">
+                                        <span class="ion-calendar"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control " name="full_name" id="r_name" placeholder="Name">
+                                    <div class="input-group-addon">
+                                        <span class="ion-person"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="email_address" id="r_email" placeholder="Email Id">
+                                    <div class="input-group-addon">
+                                        <span class="ion-ios-email"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group clockpicker">
+                                    <input type="text" class="form-control" name="time" id="r_time" value="09:30" placeholder="Time">
+                                    <span class="input-group-addon">
+                                        <span class="ion-ios-clock"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="guest_number" id="r_guest" placeholder="Guest Number">
+                                    <div class="input-group-addon">
+                                        <span class="ion-person"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="phone_number" id="r_phone_number" placeholder="Phone Number">
+                                    <div class="input-group-addon">
+                                        <span class="ion-android-call"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" name="submit_reservation" class="btn btn-xl btn-dark btn-block">Book Now</button>
+                        <div id="r_result"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="space-70"></div>
+    </section>
+    <!--end reservation-->
+      <!-- <div class="cta-background parallax-background" >
            <div class="container">
                <div class="row">
                    <div class="col-md-8 ml-auto text-left">
@@ -2794,82 +2869,7 @@
             </div>
         </div><!--testimonials end-->
 
-        <!--reservation-->
-       <section id="reservation">
-            <div class="space-70"></div>
-            <div class="container">
-                <div class="text-center">
-                    <h1 class="title-1">Book a <span class="text-color ">Table</span></h1>
-                    <h5 class="subtitle">Lorem ipsum dolor</h5>
-                    <div class="space-30"></div>
-                </div>
 
-                <div class="row">
-                    <div class="col-lg-8 ml-auto mr-auto">
-                       <form  method="post" class="reservation-form"  action="{{ path('index') }}" name="reservation">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-group date">
-                                    <input type="text" class="form-control datepicker" name="date" placeholder="Date">
-                                    <div class="input-group-addon">
-                                        <span class="ion-calendar"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <input type="text" class="form-control " name="full_name" id="r_name" placeholder="Name">
-                                    <div class="input-group-addon">
-                                        <span class="ion-person"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="email_address" id="r_email" placeholder="Email Id">
-                                    <div class="input-group-addon">
-                                        <span class="ion-ios-email"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="input-group clockpicker">
-                                    <input type="text" class="form-control" name="time" id="r_time" value="09:30" placeholder="Time">
-                                    <span class="input-group-addon">
-                                        <span class="ion-ios-clock"></span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="guest_number" id="r_guest" placeholder="Guest Number">
-                                    <div class="input-group-addon">
-                                        <span class="ion-person"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="phone_number" id="r_phone_number" placeholder="Phone Number">
-                                    <div class="input-group-addon">
-                                        <span class="ion-android-call"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                           <button type="submit" name="submit_reservation" class="btn btn-xl btn-dark btn-block">Book Now</button>
-                        <div id="r_result"></div>
-                    </form>
-                    </div>
-                </div>
-            </div>
-            <div class="space-70"></div>
-        </section>
-        <!--end reservation-->
 
 
 
@@ -2979,6 +2979,9 @@
 
 {% block javascripts %}
         <script type="text/javascript">
+            function myFunction() {
+                document.getElementById("first-menu").click();
+            }
             //revolution slider
     jQuery("#slider1").revolution({
         sliderType: "standard",
