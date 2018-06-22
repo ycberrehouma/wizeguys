@@ -201,7 +201,7 @@ class WizeguysController extends Controller
 
 
                     
-                    return $this->redirectToRoute('index', array('first' => $first[0] ));
+                    return $this->redirectToRoute('clifton', array('first' => $first[0] ));
 
                 } else if (sha1($password) !== $test) {
                   /*  $this->addFlash(
@@ -294,7 +294,7 @@ class WizeguysController extends Controller
                 $first
             );*/
 
-            return $this->redirectToRoute('index', array('first' => $first
+            return $this->redirectToRoute('clifton', array('first' => $first
             ));
             }
 
@@ -410,7 +410,7 @@ class WizeguysController extends Controller
             }
             if ($city == "Hackensack" || $city == "Lodi" || $city == "Rochelle Park" || $city == "Little Ferry"
                 || $city == "Hasbrouck Heights" || $city == "Woodridge" || $city == "Maywood"){
-                return $this->redirectToRoute('index');
+                return $this->redirectToRoute('hackensack');
             }
             }
         return $this->render('main/first.twig');
@@ -606,7 +606,7 @@ class WizeguysController extends Controller
 
 
 
-            return $this->redirectToRoute('index', array('first' => $first
+            return $this->redirectToRoute('clifton', array('first' => $first
             ));
         }
 
@@ -744,7 +744,7 @@ class WizeguysController extends Controller
     {
 
         session_destroy();
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('clifton');
 
     }
 
