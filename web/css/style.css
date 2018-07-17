@@ -1771,7 +1771,11 @@ label.error {
     margin-bottom: 0;
     background: #fff; }
   .login-register-inner {
-    padding: 40px 0; } }
+    padding: 40px 0; }
+  .slider-caption {
+
+    font-size: 16px !important;}
+}
 
 @media (max-width: 767px) {
   .main-content {

@@ -38,6 +38,7 @@ class WizeguysController extends Controller
 
                   $em->persist($Message);
                   $em->flush();
+              //flush to database so either, 
 
               $message = \Swift_Message::newInstance()
                   ->setSubject('New Reservation')
