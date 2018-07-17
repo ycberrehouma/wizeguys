@@ -439,12 +439,12 @@ class WizeguysController extends Controller
             $em->persist($Message);
             $em->flush();
 
-            $message = \Swift_Message::newInstance()
+          /*  $message = \Swift_Message::newInstance()
                 ->setSubject('New Reservation')
                 ->setFrom(array('yassine.b@byteacademy.co' => 'WizeGuys Support'))
                 ->setTo('metallicarow@gmail.com')
                 ->setBody('You have a new message from customer '.$full_name. '! you can check the database for more details but his message is:'.`"<br>"` .$message, 'text/html');
-            $this->get('mailer')->send($message);
+            $this->get('mailer')->send($message);*/
 
         }
 
@@ -470,12 +470,12 @@ class WizeguysController extends Controller
             $em->flush();
 
 
-            $message = \Swift_Message::newInstance()
+           /* $message = \Swift_Message::newInstance()
                 ->setSubject('New Reservation')
                 ->setFrom(array('yassine.b@byteacademy.co' => 'WizeGuys Support'))
                 ->setTo('metallicarow@gmail.com')
                 ->setBody('You have a reservation! check the database list to find out who', 'text/html');
-            $this->get('mailer')->send($message);
+            $this->get('mailer')->send($message);*/
 
         }
 
