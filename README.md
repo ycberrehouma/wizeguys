@@ -1,3 +1,4 @@
+<b> -- Unfortunatly, since i graduated and been hired for full time position, i stopped any payment for domand and hosting server  which means the sites are shut -- </b>
 wizeguys http://glialomsa.com/wizeguys/web/first
 http://glialomsa.com/wizeguys/web/clifton
 http://glialomsa.com/wizeguys/web/database
